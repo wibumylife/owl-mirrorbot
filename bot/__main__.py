@@ -66,8 +66,8 @@ def chat_list(update, context):
 @run_async
 def repo(update, context):
     button = [
-    [InlineKeyboardButton("Repo", url=f"https://github.com")],
-    [InlineKeyboardButton("Support Group", url=f"https://t.me/FreakCloud")]]
+    [InlineKeyboardButton("Owner GC", url=f"https://t.me/wibumylife")],
+    [InlineKeyboardButton("Support Group", url=f"https://t.me/joinchat/Ippv0aaSuMEwZmE1")]]
     reply_markup = InlineKeyboardMarkup(button)
     update.effective_message.reply_photo(IMAGE_URL, reply_markup=reply_markup)
 
