@@ -1,15 +1,15 @@
 {
-    "name": "slam-mirrorbot ",
+    "name": "owl-mirrorbot",
     "description": "A Telegram bot for all your mirror needs",
-    "logo": "https://telegra.ph/file/65dd0550f43d23afcf1ba.png",
+    "logo": "https://telegra.ph/file/a58d6173515cef1b4161c.jpg",
     "keywords": [
       "bot",
       "telegram",
       "python"
     ],
-    "repository": "https://github.com/BlackBox-cmd/Freak-mirrorbot",
-    "website": "https://t.me/FreakCloud",
-    "success_url": "https://github.com/BlackBox-cmd/Freak-mirrorbot/blob/master/README.md",
+    "repository": "https://github.com/wibumylife/owl-mirrorbot",
+    "website": "https://t.me/joinchat/9npLFmgzrww2Y2Q1",
+    "success_url": "https://github.com/wibumylife/owl-mirrorbot/blob/master/README.md",
     "stack": "container",
     "env": {
       "ENV": {
