@@ -317,22 +317,22 @@ class GoogleDriveHelper:
             if meta.get("mimeType") == self.__G_DRIVE_DIR_MIME_TYPE:
                 dir_id = self.create_directory(meta.get('name'), parent_id)
                 result = self.cloneFolder(meta.get('name'), meta.get('name'), meta.get('id'), dir_id)
-                msg += f'<b>🚀 Filename: </b><code>{meta.get("name")}</code>\n<b>🧪 Size: </b><code>{get_readable_file_size(self.transferred_size)}</code>\n\n<i>Do not share the Index Link Outside This Group!</i>\n Or Freak will Hunt you down! @FreakCloud'
+                msg += f'<b>🚀 Filename: </b><code>{meta.get("name")}</code>\n<b>🧪 Size: </b><code>{get_readable_file_size(self.transferred_size)}</code>\n\n<i>💧Successfully Mirroring!💧</i>\n🔥Thank You🔥'
                 durl = self.__G_DRIVE_DIR_BASE_DOWNLOAD_URL.format(dir_id)
                 buttons = button_build.ButtonMaker()
                 if SHORTENER is not None and SHORTENER_API is not None:
                     surl = requests.get('https://{}/api?api={}&url={}&format=text'.format(SHORTENER, SHORTENER_API, durl)).text
-                    buttons.buildbutton("☁️Drive Link☁️", surl)
+                    buttons.buildbutton("☁️ Drive Link", surl)
                 else:
-                    buttons.buildbutton("☁️Drive Link☁️", durl)
+                    buttons.buildbutton("☁️ Drive Link", durl)
                 if INDEX_URL is not None:
                     url_path = requests.utils.quote(f'{meta.get("name")}')
                     url = f'{INDEX_URL}/{url_path}/'
                     if SHORTENER is not None and SHORTENER_API is not None:
                         siurl = requests.get('https://{}/api?api={}&url={}&format=text'.format(SHORTENER, SHORTENER_API, url)).text
-                        buttons.buildbutton("⚡Index Link⚡", siurl)
+                        buttons.buildbutton("⚡ Index Link", siurl)
                     else:
-                        buttons.buildbutton("⚡Index Link⚡", url)
+                        buttons.buildbutton("⚡ Index Link", url)
                 if BUTTON_THREE_NAME is not None and BUTTON_THREE_URL is not None:
                     buttons.buildbutton(f"{BUTTON_THREE_NAME}", f"{BUTTON_THREE_URL}")
                 if BUTTON_FOUR_NAME is not None and BUTTON_FOUR_URL is not None:
@@ -480,9 +480,9 @@ class GoogleDriveHelper:
                     content += f'<b> | <a href="https://telegra.ph/{self.path[nxt_page]}">Next</a></b>'
                     nxt_page += 1
             Telegraph(access_token=telegraph_token).edit_page(path = self.path[prev_page],
-                                 title = 'Freak Mirror Bot - Search',
-                                 author_name='Freak Cloud',
-                                 author_url='https://t.me/FreakCloud',
+                                 title = 'Mirror Bot - Search',
+                                 author_name='𝚉𝙰𝚈𝚈',
+                                 author_url='https://t.me/wibumylife',
                                  html_content=content)
         return
 
@@ -559,9 +559,9 @@ class GoogleDriveHelper:
 
             for content in self.telegraph_content :
                 self.path.append(Telegraph(access_token=telegraph_token).create_page(
-                                                        title = 'Freak Mirror Bot Search',
-                                                        author_name='Freak Cloud',
-                                                        author_url='https://t.me/FreakCloud',
+                                                        title = 'Mirror Bot Search',
+                                                        author_name='𝚉𝙰𝚈𝚈',
+                                                        author_url='https://t.me/wibumylife',
                                                         html_content=content
                                                         )['path'])
 
