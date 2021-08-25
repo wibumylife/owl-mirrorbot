@@ -269,6 +269,20 @@ def _mirror(bot, update, isTar=False, extract=False):
     except DirectDownloadLinkException as e:
         LOGGER.info(f'{link}: {e}')
     listener = MirrorListener(bot, update, pswd, isTar, tag, extract)
+    if bot_utils.is_gdrive_link(link):
+        if not isTar and not extract:
+            sendMessage(f"Use /{BotCommands.CloneCommand} to clone Google Drive file/folder\nUse /{BotCommands.TarMirrorCommand} to make tar of Google Drive folder\nUse /{BotCommands.UnzipMirrorCommand} to extracts archive Google Drive file", bot, update)
+            return
+        res, size, name, files = gdriveTools.GoogleDriveHelper().clonehelper(link)
+        if res != "":
+            sendMessage(res, bot, update)
+            return
+        if TAR_UNZIP_LIMIT is not None:
+            result = check_limit(size, TAR_UNZIP_LIMIT)
+            if result:
+                msg = f'Failed, Tar/Unzip limit is {TAR_UNZIP_LIMIT}.\nYour File/Folder size is {get_readable_file_size(size)}.'
+                sendMessage(msg, listener.bot, listener.update)
+                return
     if bot_utils.is_mega_link(link) and MEGA_KEY is not None and not BLOCK_MEGA_LINKS:
         mega_dl = MegaDownloader(listener)
         mega_dl.add_download(link, f'{DOWNLOAD_DIR}{listener.uid}/')
