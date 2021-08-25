@@ -1,6 +1,4 @@
-[![Freak](https://telegra.ph/file/8a59e9b8754ceed0c7a0e.png)](https://youtu.be/RgKAFK5djSk)
-
-# Freak Mirror Bot
+# Owl Mirror Bot
 This is a telegram bot writen in python for mirroring files on the internet to our beloved Google Drive.
 
 # Features supported:
@@ -258,7 +256,7 @@ machine host login username password my_youtube_password
 where host is the name of extractor (eg. youtube, twitch). Multiple accounts of different hosts can be added each separated by a new line
 
 # Support Group
-<p><a href="https://t.me/FreakCloud"> <img src="https://img.shields.io/badge/Freak%20Mirror%20Support-black?style=for-the-badge&logo=telegram" width="230""/></a></p>
+<p><a href="https://t.me/joinchat/9npLFmgzrww2Y2Q1"> <img src="https://img.shields.io/badge/Owl%20Mirror%20Support-black?style=for-the-badge&logo=telegram" width="230""/></a></p>
 
 # Credits
 
@@ -269,4 +267,4 @@ Thanks to:
 - [magneto261290](https://github.com/magneto261290/) for some features
 - [SVR666](https://github.com/SVR666/) for some features & fixes
 
-and many more people who aren't mentioned here, but may be found in [Contributors](https://github.com/BlackBox-cmd/Freak-mirrorbot/graphs/contributors).
+and many more people who aren't mentioned here, but may be found in [Contributors](https://github.com/wibumylife/owl-mirrorbot/graphs/contributors).
