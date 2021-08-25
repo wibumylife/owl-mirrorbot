@@ -273,24 +273,6 @@ def _mirror(bot, update, isTar=False, extract=False):
         if not isTar and not extract:
             sendMessage(f"Use /{BotCommands.CloneCommand} to clone Google Drive file/folder\nUse /{BotCommands.TarMirrorCommand} to make tar of Google Drive folder\nUse /{BotCommands.UnzipMirrorCommand} to extracts archive Google Drive file", bot, update)
             return
-        res, size, name, files = gdriveTools.GoogleDriveHelper().clonehelper(link)
-        if res != "":
-            sendMessage(res, bot, update)
-            return
-        if TAR_UNZIP_LIMIT is not None:
-            result = check_limit(size, TAR_UNZIP_LIMIT)
-            if result:
-                msg = f'Failed, Tar/Unzip limit is {TAR_UNZIP_LIMIT}.\nYour File/Folder size is {get_readable_file_size(size)}.'
-                sendMessage(msg, listener.bot, listener.update)
-                return
-        LOGGER.info(f"Download Name : {name}")
-        drive = gdriveTools.GoogleDriveHelper(name, listener)
-        gid = ''.join(random.SystemRandom().choices(string.ascii_letters + string.digits, k=12))
-        download_status = DownloadStatus(drive, size, listener, gid)
-        with download_dict_lock:
-            download_dict[listener.uid] = download_status
-        sendStatusMessage(update, bot)
-        drive.download(link)
     if bot_utils.is_mega_link(link) and MEGA_KEY is not None and not BLOCK_MEGA_LINKS:
         mega_dl = MegaDownloader(listener)
         mega_dl.add_download(link, f'{DOWNLOAD_DIR}{listener.uid}/')
