@@ -126,11 +126,6 @@
         "value": "",
         "required": false
       },
-      "UNFINISHED_PROGRESS_STR": {
-        "description": "Single character for unfinished progress, https://coolsymbol.com",
-        "value": "",
-        "required": false
-      },
       "BUTTON_THREE_NAME": {
         "description": "Extra buttons (optional).",
         "required": false
