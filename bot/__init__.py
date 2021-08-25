@@ -173,6 +173,18 @@ try:
 except KeyError:
     INDEX_URL = None
 try:
+    FINISHED_PROGRESS_STR = getConfig('FINISHED_PROGRESS_STR')
+    if len(FINISHED_PROGRESS_STR) == 0:
+        FINISHED_PROGRESS_STR = ''
+except KeyError:
+    FINISHED_PROGRESS_STR = ''
+try:
+    UNFINISHED_PROGRESS_STR = getConfig('UNFINISHED_PROGRESS_STR')
+    if len(UNFINISHED_PROGRESS_STR) == 0:
+        UNFINISHED_PROGRESS_STR = ''
+except KeyError:
+    UNFINISHED_PROGRESS_STR = ''
+try:
     BUTTON_THREE_NAME = getConfig('BUTTON_THREE_NAME')
     BUTTON_THREE_URL = getConfig('BUTTON_THREE_URL')
     if len(BUTTON_THREE_NAME) == 0 or len(BUTTON_THREE_URL) == 0:
