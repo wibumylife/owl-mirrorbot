@@ -121,6 +121,16 @@
         "value": "https://telegra.ph/file/04c05cacf44f6e811e5e1.jpg",
         "required": false
        },
+        "FINISHED_PROGRESS_STR": {
+        "description": "Single character for finished progress",
+        "value": "",
+        "required": false
+      },
+      "UNFINISHED_PROGRESS_STR": {
+        "description": "Single character for unfinished progress",
+        "value": "",
+        "required": false
+      },
       "BUTTON_THREE_NAME": {
         "description": "Extra buttons (optional).",
         "required": false
