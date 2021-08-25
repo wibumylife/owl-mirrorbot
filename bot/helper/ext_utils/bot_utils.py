@@ -132,6 +132,9 @@ def get_readable_time(seconds: int) -> str:
     result += f'{seconds}s'
     return result
 
+def is_gdrive_link(url: str):
+    return "drive.google.com" in url
+
 
 def is_mega_link(url: str):
     return "mega.nz" in url
