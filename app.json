@@ -122,12 +122,12 @@
         "required": false
        },
         "FINISHED_PROGRESS_STR": {
-        "description": "Single character for finished progress",
+        "description": "Single character for finished progress, https://coolsymbol.com",
         "value": "",
         "required": false
       },
       "UNFINISHED_PROGRESS_STR": {
-        "description": "Single character for unfinished progress",
+        "description": "Single character for unfinished progress, https://coolsymbol.com",
         "value": "",
         "required": false
       },
