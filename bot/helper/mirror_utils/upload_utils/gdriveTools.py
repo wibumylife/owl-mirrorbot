@@ -326,22 +326,42 @@ class GoogleDriveHelper:
             if meta.get("mimeType") == self.__G_DRIVE_DIR_MIME_TYPE:
                 dir_id = self.create_directory(meta.get('name'), parent_id)
                 result = self.cloneFolder(meta.get('name'), meta.get('name'), meta.get('id'), dir_id)
-                msg += f'<b>🚀 Filename: </b><code>{meta.get("name")}</code>\n<b>🧪 Size: </b><code>{get_readable_file_size(self.transferred_size)}</code>\n\n<i>💧Successfully Mirroring!💧</i>\n🔥Thank You🔥'
-                durl = self.__G_DRIVE_DIR_BASE_DOWNLOAD_URL.format(dir_id)
-                buttons = button_build.ButtonMaker()
-                if SHORTENER is not None and SHORTENER_API is not None:
-                    surl = requests.get('https://{}/api?api={}&url={}&format=text'.format(SHORTENER, SHORTENER_API, durl)).text
-                    buttons.buildbutton("☁️ Drive Link", surl)
-                else:
-                    buttons.buildbutton("☁️ Drive Link", durl)
-                if INDEX_URL is not None:
-                    url_path = requests.utils.quote(f'{meta.get("name")}')
-                    url = f'{INDEX_URL}/{url_path}/'
+                msg = f'<b>🚀 Filename: </b><code>{download_dict[self.uid].name()}</code>\n<b>🧪 Size: </b><code>{size}</code>'
+            if os.path.isdir(f'{DOWNLOAD_DIR}/{self.uid}/{download_dict[self.uid].name()}'):
+                msg += '\n<b>📦 Type: </b><code>Folder</code>'
+                msg += f'\n<b>📂 SubFolders: </b><code>{folders}</code>'
+                msg += f'\n<b>📄 Files: </b><code>{files}</code>\n\n</b><code>💧Successfully Mirroring!💧</code>\n<b>🔥Thank You🔥'
+            else:
+                msg += f'\n<b>♻️ Type: </b><code>{typ}</code>\n\n</b><code>💧Successfully Mirroring!💧</code>\n<b>🔥Thank You🔥'
+            buttons = button_build.ButtonMaker()
+            if SHORTENER is not None and SHORTENER_API is not None:
+                surl = short_url(link)
+                buttons.buildbutton("☁️ Drive Link", surl)
+            else:
+                buttons.buildbutton("☁️ Drive Link", link)
+            LOGGER.info(f'Done Uploading {download_dict[self.uid].name()}')
+            if INDEX_URL is not None:
+                url_path = requests.utils.quote(f'{download_dict[self.uid].name()}')
+                share_url = f'{INDEX_URL}/{url_path}'
+                if os.path.isdir(f'{DOWNLOAD_DIR}/{self.uid}/{download_dict[self.uid].name()}'):
+                    share_url += '/'
                     if SHORTENER is not None and SHORTENER_API is not None:
-                        siurl = requests.get('https://{}/api?api={}&url={}&format=text'.format(SHORTENER, SHORTENER_API, url)).text
+                        siurl = short_url(share_url)
                         buttons.buildbutton("⚡ Index Link", siurl)
                     else:
-                        buttons.buildbutton("⚡ Index Link", url)
+                        buttons.buildbutton("⚡ Index Link", share_url)
+                else:
+                    share_urls = f'{INDEX_URL}/{url_path}?a=view'
+                    if SHORTENER is not None and SHORTENER_API is not None:
+                        siurl = short_url(share_url)
+                        buttons.buildbutton("⚡ Index Link", siurl)
+                        if VIEW_LINK:
+                            siurls = short_url(share_urls)
+                            buttons.buildbutton("🌐 View Link", siurls)
+                    else:
+                        buttons.buildbutton("⚡ Index Link", share_url)
+                        if VIEW_LINK:
+                            buttons.buildbutton("🌐 View Link", share_urls)
                 if BUTTON_THREE_NAME is not None and BUTTON_THREE_URL is not None:
                     buttons.buildbutton(f"{BUTTON_THREE_NAME}", f"{BUTTON_THREE_URL}")
                 if BUTTON_FOUR_NAME is not None and BUTTON_FOUR_URL is not None:
