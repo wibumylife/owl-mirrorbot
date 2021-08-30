@@ -53,6 +53,8 @@ class GoogleDriveHelper:
         self.status = None
         self.updater = None
         self.name = name
+        self.total_files = 0
+        self.total_folders = 0
         self.update_interval = 3
         self.telegraph_content = []
         self.path = []
@@ -154,6 +156,10 @@ class GoogleDriveHelper:
             'description': 'mirror',
             'mimeType': mime_type,
         }
+        try:
+            self.typee = file_metadata['mimeType']
+        except:
+            self.typee = 'File' 
         if parent_id is not None:
             file_metadata['parents'] = [parent_id]
 
@@ -251,7 +257,10 @@ class GoogleDriveHelper:
             finally:
                 self.updater.cancel()
         LOGGER.info(download_dict)
-        self.__listener.onUploadComplete(link, size)
+        files = self.total_files
+        folders = self.total_folders
+        typ = self.typee
+        self.__listener.onUploadComplete(link, size, files, folders, typ)
         LOGGER.info("Deleting downloaded file/folder..")
         return link
 
