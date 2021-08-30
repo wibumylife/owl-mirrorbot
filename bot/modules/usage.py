@@ -47,6 +47,7 @@ def dyno_usage(update, context):
             minutes_remain = quota_remain / 60
             hours = math.floor(minutes_remain / 60)
             minutes = math.floor(minutes_remain % 60)
+            day = math.floor(hours / 24)
             
             """App Quota."""
             Apps = result["apps"]
