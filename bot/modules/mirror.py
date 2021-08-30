@@ -164,6 +164,18 @@ class MirrorListener(listeners.MirrorListeners):
                     buttons.buildbutton("⚡ Index Link", siurl)
                 else:
                     buttons.buildbutton("⚡ Index Link", share_url)
+               else:
+                    share_urls = f'{INDEX_URL}/{url_path}?a=view'
+                    if SHORTENER is not None and SHORTENER_API is not None:
+                        siurl = short_url(share_url)
+                        buttons.buildbutton("⚡ Index Link", siurl)
+                        if VIEW_LINK:
+                            siurls = short_url(share_urls)
+                            buttons.buildbutton("🌐 View Link", siurls)
+                    else:
+                        buttons.buildbutton("⚡ Index Link", share_url)
+                        if VIEW_LINK:
+                            buttons.buildbutton("🌐 View Link", share_urls)
             if BUTTON_THREE_NAME is not None and BUTTON_THREE_URL is not None:
                 buttons.buildbutton(f"{BUTTON_THREE_NAME}", f"{BUTTON_THREE_URL}")
             if BUTTON_FOUR_NAME is not None and BUTTON_FOUR_URL is not None:
